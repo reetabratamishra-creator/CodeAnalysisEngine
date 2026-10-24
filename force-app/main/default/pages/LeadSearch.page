@@ -1,0 +1,21 @@
+<apex:page controller="LeadController">
+    <!-- SAMPLE BAD CODE - for testing SF Audit only. -->
+    <h1>Lead search for: {!$CurrentPage.parameters.q}</h1>
+    <apex:form >
+        <apex:inputText value="{!searchText}"/>
+        <apex:commandButton value="Search" action="{!search}"/>
+        <apex:commandButton value="Back" action="{!goBack}"/>
+    </apex:form>
+    <apex:outputText value="{!searchText}" escape="false"/>
+    <script>
+        var q = '{!$CurrentPage.parameters.q}';
+        document.write(q);
+    </script>
+    <apex:pageBlock title="Results">
+        <apex:pageBlockTable value="{!results}" var="l">
+            <apex:column value="{!l.FirstName}"/>
+            <apex:column value="{!l.LastName}"/>
+            <apex:column value="{!l.Company}"/>
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+</apex:page>
